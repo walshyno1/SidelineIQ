@@ -164,8 +164,8 @@ SidelineIQ/
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd GAA_Stats
+git clone https://github.com/walshyno1/SidelineIQ.git
+cd SidelineIQ
 
 # Install dependencies
 npm install
@@ -178,7 +178,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173/`
+The app will be available at `http://localhost:5173/SidelineIQ/`
 
 ### Build
 
@@ -195,6 +195,12 @@ npm run preview
 ```bash
 npm run lint
 ```
+
+### Deployment
+
+The app is automatically deployed to GitHub Pages when you push to the `main` branch.
+
+**Live URL:** https://walshyno1.github.io/SidelineIQ/
 
 ## Installing on Mobile Devices
 
