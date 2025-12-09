@@ -60,6 +60,14 @@ Real-time display of:
   - **Kickouts Won** - green heatmap for successful kickouts
   - **Kickouts Lost** - red heatmap for lost kickouts
   - **Success Zones** - grid showing win rate % per zone with color coding
+  - **Date Range Filtering** - filter by All Time, Last 30/90 Days, This Year, or custom range
+  - Toggle individual markers on/off
+- **Shot Heatmaps** - visualize shooting patterns with:
+  - **All Shots** - blue heatmap showing shot locations
+  - **Scores** - green heatmap for successful shots
+  - **Misses** - red heatmap for missed shots
+  - **Accuracy Zones** - grid showing accuracy % per zone with color coding
+  - **Date Range Filtering** - filter by All Time, Last 30/90 Days, This Year, or custom range
   - Toggle individual markers on/off
 - **Recent match history** with vs/@ designation (Home/Away)
 
@@ -106,6 +114,7 @@ GAA_Stats/
 │   │   ├── MatchSetup.tsx           # Initial match setup form
 │   │   ├── MatchSummary.tsx         # Full match summary with tabs
 │   │   ├── PitchCanvas.tsx          # Interactive GAA pitch SVG
+│   │   ├── ShotHeatmap.tsx          # Shot heatmap visualization
 │   │   ├── ShotMapView.tsx          # Aggregated shot map display
 │   │   ├── ShotModal.tsx            # Shot location recording modal
 │   │   ├── SquadSetup.tsx           # Player management for attendance
