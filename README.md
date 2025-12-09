@@ -96,13 +96,20 @@ Real-time display of:
 ## Project Structure
 
 ```
-GAA_Stats/
+SidelineIQ/
 ├── public/                    # Static assets
+│   ├── apple-touch-icon.svg   # iOS home screen icon
+│   ├── icon-192.svg           # PWA icon (192x192)
+│   ├── icon-512.svg           # PWA icon (512x512)
+│   └── vite.svg               # Vite default icon
 ├── src/
 │   ├── assets/               # App assets
+│   │   └── react.svg         # React logo
 │   ├── components/
 │   │   ├── AttendanceEventView.tsx  # Individual event attendance marking
 │   │   ├── AttendanceTracker.tsx    # Event list and creation
+│   │   ├── BackupManager.tsx        # Export/import match data
+│   │   ├── ConfirmModal.tsx         # Reusable confirmation dialog
 │   │   ├── HalfTimeSummary.tsx      # Half-time statistics summary
 │   │   ├── Home.tsx                 # Landing page with navigation
 │   │   ├── KickoutHeatmap.tsx       # Kickout heatmap visualization
@@ -123,6 +130,7 @@ GAA_Stats/
 │   │   └── TeamSelector.tsx         # Team selection for attendance
 │   ├── hooks/
 │   │   ├── useAttendance.ts         # Attendance state management
+│   │   ├── useMatchHistory.ts       # Match history utilities
 │   │   ├── useMatchHistoryDB.ts     # IndexedDB match history hook
 │   │   └── useMatchStats.ts         # Match state management hook
 │   ├── types/
@@ -130,7 +138,9 @@ GAA_Stats/
 │   │   └── match.ts                 # Match type definitions
 │   ├── utils/
 │   │   ├── attendanceDB.ts          # IndexedDB for attendance data
-│   │   └── calculations.ts          # Score and stat calculation functions
+│   │   ├── backup.ts                # Backup/restore utilities
+│   │   ├── calculations.ts          # Score and stat calculation functions
+│   │   └── indexedDB.ts             # IndexedDB for match history
 │   ├── App.tsx               # Main application component
 │   ├── App.css               # App-specific styles
 │   ├── index.css             # Global styles with Tailwind
@@ -138,7 +148,9 @@ GAA_Stats/
 ├── index.html                # HTML template
 ├── package.json              # Dependencies and scripts
 ├── tsconfig.json             # TypeScript configuration
-├── vite.config.ts            # Vite configuration
+├── tsconfig.app.json         # App-specific TS config
+├── tsconfig.node.json        # Node-specific TS config
+├── vite.config.ts            # Vite configuration with PWA
 └── eslint.config.js          # ESLint configuration
 ```
 
@@ -302,5 +314,4 @@ Each kickout records:
 
 ## License
 
-MIT
 
