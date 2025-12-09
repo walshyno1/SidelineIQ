@@ -1,0 +1,15 @@
+GAA Stats tracking app
+
+Features:
+Create a new match to track
+Home and away team stats tracking
+User can tag the following events: points, goals, wides, shots saved, shots dropped short, kickout won and lost, turnovers won and lost
+half time and full time save button
+real time view of the following: Kickout won %, shooting accuracy % ((total shots - (wides + dropped short + saved)) / total shots, score
+
+Shot Map Feature:
+When a shot-related button is pressed (point, goal, wide, short, saved), a popup window appears
+User marks the shot location on a GAA pitch outline image
+Tick (✓) for scores (points, goals)
+X for misses (wides, short, saved)
+Creates a visual "shot map" showing all shot locations and outcomes

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#111827"/>
+  <circle cx="256" cy="200" r="90" fill="#10B981" stroke="#059669" stroke-width="8"/>
+  <path d="M256 110 L256 290 M166 200 L346 200" stroke="#059669" stroke-width="8"/>
+  <rect x="146" y="340" width="220" height="24" rx="12" fill="#6B7280"/>
+  <rect x="176" y="380" width="160" height="18" rx="9" fill="#4B5563"/>
+  <text x="256" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#10B981">IQ</text>
+</svg>
