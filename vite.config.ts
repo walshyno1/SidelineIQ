@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/GAA_Stats/',
+  base: '/SidelineIQ/',
   plugins: [
     react(),
     tailwindcss(),
@@ -20,8 +20,8 @@ export default defineConfig({
         background_color: '#111827',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/GAA_Stats/',
-        start_url: '/GAA_Stats/',
+        scope: '/SidelineIQ/',
+        start_url: '/SidelineIQ/',
         icons: [
           {
             src: '/icon-192.svg',
