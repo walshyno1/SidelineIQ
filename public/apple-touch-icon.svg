@@ -1,8 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Background -->
   <rect width="180" height="180" rx="22" fill="#111827"/>
-  <circle cx="90" cy="75" r="32" fill="#10B981" stroke="#059669" stroke-width="3"/>
-  <path d="M90 43 L90 107 M58 75 L122 75" stroke="#059669" stroke-width="3"/>
-  <rect x="50" y="120" width="80" height="8" rx="4" fill="#6B7280"/>
-  <rect x="60" y="135" width="60" height="6" rx="3" fill="#4B5563"/>
-  <text x="90" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#10B981">IQ</text>
+  
+  <!-- GAA Football (O'Neill's style) -->
+  <ellipse cx="90" cy="90" rx="62" ry="52" fill="#8B5A2B" stroke="#6B4423" stroke-width="2"/>
+  
+  <!-- Football panels/sections -->
+  <path d="M90 38 Q112 90 90 142" fill="none" stroke="#6B4423" stroke-width="2"/>
+  <path d="M90 38 Q68 90 90 142" fill="none" stroke="#6B4423" stroke-width="2"/>
+  
+  <!-- Horizontal seam -->
+  <ellipse cx="90" cy="90" rx="62" ry="19" fill="none" stroke="#6B4423" stroke-width="2"/>
+  
+  <!-- Center stitching -->
+  <line x1="90" y1="50" x2="90" y2="130" stroke="#F5F5DC" stroke-width="3"/>
+  <line x1="82" y1="57" x2="98" y2="57" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="80" y1="68" x2="100" y2="68" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="79" y1="80" x2="101" y2="80" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="79" y1="92" x2="101" y2="92" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="79" y1="104" x2="101" y2="104" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="80" y1="115" x2="100" y2="115" stroke="#F5F5DC" stroke-width="2"/>
+  <line x1="82" y1="123" x2="98" y2="123" stroke="#F5F5DC" stroke-width="2"/>
+  
+  <!-- IQ Text Overlay -->
+  <text x="90" y="102" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="40" font-weight="900" fill="#22C55E" stroke="#111827" stroke-width="3" paint-order="stroke">IQ</text>
 </svg>
