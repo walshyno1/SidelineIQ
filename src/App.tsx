@@ -21,6 +21,7 @@ import { AttendanceTracker } from './components/AttendanceTracker';
 import { AttendanceEventView } from './components/AttendanceEventView';
 import BackupManager from './components/BackupManager';
 import { BackupReminder } from './components/BackupReminder';
+import logger from './utils/logger';
 import type { Team, ShotType, EventType, Match, KickoutType } from './types/match';
 import type { AttendanceEvent } from './types/attendance';
 
@@ -158,6 +159,7 @@ function App() {
   };
 
   const handleHalfTime = () => {
+    logger.info('Match', 'Half time', { homeTeam: match?.homeTeam, awayTeam: match?.awayTeam });
     saveHalfTime();
     setShowHalfTimeSummary(true);
   };
@@ -167,6 +169,7 @@ function App() {
   };
 
   const handleFullTime = () => {
+    logger.info('Match', 'Full time - match ended', { homeTeam: match?.homeTeam, awayTeam: match?.awayTeam });
     saveFullTime();
     // The match will be saved to history when user starts new match
     // We need to save immediately since the match state will update
@@ -356,6 +359,7 @@ function App() {
       return (
         <MatchSetup 
           onStartMatch={(home, away, date, trackShots, trackKickouts) => {
+            logger.info('Match', 'Match started', { homeTeam: home, awayTeam: away, date, trackShots, trackKickouts });
             startNewMatch(home, away, date, trackShots, trackKickouts);
             setActiveTeam('home');
             setShowSetup(false);
@@ -525,6 +529,7 @@ function App() {
         onViewShotMap={() => setShowShotMap(true)}
         onViewKickoutMap={() => setShowKickoutMap(true)}
         onAbandonMatch={() => {
+          logger.info('Match', 'Match abandoned', { homeTeam: match.homeTeam, awayTeam: match.awayTeam });
           clearMatch();
           setShowHome(true);
         }}

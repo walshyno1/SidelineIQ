@@ -1,5 +1,6 @@
 import type { Match } from '../types/match';
 import { checkStorageSpace, estimateDataSize } from './storage';
+import logger from './logger';
 
 const DB_NAME = 'gaa_stats_db';
 const DB_VERSION = 1;
@@ -75,9 +76,11 @@ export const saveMatch = async (match: Match): Promise<void> => {
   const storageCheck = await checkStorageSpace(dataSize);
   
   if (!storageCheck.canStore) {
+    logger.error('IndexedDB', 'Insufficient storage for match save', { matchId: match.id, required: dataSize });
     throw new Error(storageCheck.message);
   }
 
+  logger.debug('IndexedDB', 'Saving match', { matchId: match.id, homeTeam: match.homeTeam, awayTeam: match.awayTeam });
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
@@ -99,9 +102,11 @@ export const saveMultipleMatches = async (matches: Match[]): Promise<number> => 
   const storageCheck = await checkStorageSpace(dataSize);
   
   if (!storageCheck.canStore) {
+    logger.error('IndexedDB', 'Insufficient storage for batch match save', { matchCount: matches.length, required: dataSize });
     throw new Error(storageCheck.message);
   }
 
+  logger.info('IndexedDB', 'Saving multiple matches', { matchCount: matches.length });
   const db = await openDB();
   
   return new Promise((resolve, reject) => {

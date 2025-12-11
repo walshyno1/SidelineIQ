@@ -1,5 +1,6 @@
 import type { Squad, AttendanceEvent } from '../types/attendance';
 import { checkStorageSpace, estimateDataSize } from './storage';
+import logger from './logger';
 
 const DB_NAME = 'gaa_attendance_db';
 const DB_VERSION = 3; // Increment version to fix events store index
@@ -100,9 +101,11 @@ export const saveSquad = async (squad: Squad): Promise<void> => {
   const storageCheck = await checkStorageSpace(dataSize);
   
   if (!storageCheck.canStore) {
+    logger.error('AttendanceDB', 'Insufficient storage for squad save', { squadId: squad.id, teamName: squad.teamName });
     throw new Error(storageCheck.message);
   }
 
+  logger.debug('AttendanceDB', 'Saving squad', { squadId: squad.id, teamName: squad.teamName, playerCount: squad.players.length });
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
@@ -208,9 +211,11 @@ export const saveEvent = async (event: AttendanceEvent): Promise<void> => {
   const storageCheck = await checkStorageSpace(dataSize);
   
   if (!storageCheck.canStore) {
+    logger.error('AttendanceDB', 'Insufficient storage for event save', { eventId: event.id, eventName: event.name });
     throw new Error(storageCheck.message);
   }
 
+  logger.debug('AttendanceDB', 'Saving event', { eventId: event.id, eventName: event.name, squadId: event.squadId });
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
