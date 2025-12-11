@@ -17,10 +17,10 @@ const shotTypes: { type: ShotType; label: string; color: string }[] = [
 ];
 
 const otherEvents: { type: EventType; label: string; color: string }[] = [
-  { type: 'kickout_won', label: 'KO Won', color: 'bg-teal-600 hover:bg-teal-700' },
-  { type: 'kickout_lost', label: 'KO Lost', color: 'bg-gray-600 hover:bg-gray-700' },
-  { type: 'turnover_won', label: 'TO Won', color: 'bg-indigo-600 hover:bg-indigo-700' },
-  { type: 'turnover_lost', label: 'TO Lost', color: 'bg-gray-600 hover:bg-gray-700' },
+  { type: 'kickout_won', label: 'Own KO Won', color: 'bg-teal-600 hover:bg-teal-700' },
+  { type: 'kickout_lost', label: 'Own KO Lost', color: 'bg-gray-600 hover:bg-gray-700' },
+  { type: 'turnover_won', label: 'Turnover Won', color: 'bg-indigo-600 hover:bg-indigo-700' },
+  { type: 'turnover_lost', label: 'Turnover Lost', color: 'bg-gray-600 hover:bg-gray-700' },
 ];
 
 export const TeamPanel = ({ team, stats, onShotClick, onEventClick }: TeamPanelProps) => {

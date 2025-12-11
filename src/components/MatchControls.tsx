@@ -46,7 +46,7 @@ export const MatchControls = ({
           onClick={() => setConfirmType('halfTime')}
           className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded font-medium transition-colors"
         >
-          Half Time
+          End First Half
         </button>
       )}
       {currentHalf === 2 && !isFinished && (
@@ -54,7 +54,7 @@ export const MatchControls = ({
           onClick={() => setConfirmType('fullTime')}
           className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded font-medium transition-colors"
         >
-          Full Time
+          End Second Half
         </button>
       )}
       {trackShots && (
