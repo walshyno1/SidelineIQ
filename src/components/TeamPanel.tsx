@@ -7,37 +7,49 @@ interface TeamPanelProps {
   onEventClick: (team: Team, eventType: EventType) => void;
 }
 
-const shotTypes: { type: ShotType; label: string; color: string }[] = [
-  { type: 'goal', label: 'Goal', color: 'bg-yellow-600 hover:bg-yellow-700' },
-  { type: 'point', label: 'Point', color: 'bg-green-600 hover:bg-green-700' },
-  { type: 'two_point', label: '2 Point', color: 'bg-emerald-500 hover:bg-emerald-600' },
-  { type: 'wide', label: 'Wide', color: 'bg-red-600 hover:bg-red-700' },
-  { type: 'short', label: 'Short', color: 'bg-orange-600 hover:bg-orange-700' },
-  { type: 'saved', label: 'Saved', color: 'bg-purple-600 hover:bg-purple-700' },
-];
+const shotTypes: ShotType[] = ['goal', 'point', 'two_point', 'wide', 'short', 'saved'];
+const shotLabels: Record<ShotType, string> = {
+  goal: 'Goal',
+  point: 'Point',
+  two_point: '2 Point',
+  wide: 'Wide',
+  short: 'Short',
+  saved: 'Saved',
+};
 
-const otherEvents: { type: EventType; label: string; color: string }[] = [
-  { type: 'kickout_won', label: 'Own KO Won', color: 'bg-teal-600 hover:bg-teal-700' },
-  { type: 'kickout_lost', label: 'Own KO Lost', color: 'bg-gray-600 hover:bg-gray-700' },
-  { type: 'turnover_won', label: 'Turnover Won', color: 'bg-indigo-600 hover:bg-indigo-700' },
-  { type: 'turnover_lost', label: 'Turnover Lost', color: 'bg-gray-600 hover:bg-gray-700' },
-];
+const otherEventTypes: EventType[] = ['kickout_won', 'kickout_lost', 'turnover_won', 'turnover_lost'];
+const otherEventLabels: Record<string, string> = {
+  kickout_won: 'Own KO Won',
+  kickout_lost: 'Own KO Lost',
+  turnover_won: 'Turnover Won',
+  turnover_lost: 'Turnover Lost',
+};
 
 export const TeamPanel = ({ team, stats, onShotClick, onEventClick }: TeamPanelProps) => {
   const borderColor = team === 'home' ? 'border-green-500' : 'border-blue-500';
+  
+  // Primary button colors (for shot types)
+  const primaryBg = team === 'home' 
+    ? 'bg-green-600 hover:bg-green-700' 
+    : 'bg-blue-600 hover:bg-blue-700';
+  
+  // Secondary button colors (for other events - lighter shade)
+  const secondaryBg = team === 'home' 
+    ? 'bg-green-700/60 hover:bg-green-700/80' 
+    : 'bg-blue-700/60 hover:bg-blue-700/80';
 
   return (
     <div className={`bg-gray-800 rounded-lg p-4 border-t-4 ${borderColor}`}>
       {/* Shot Buttons */}
       <div className="mb-4">
         <div className="grid grid-cols-3 gap-2">
-          {shotTypes.map(({ type, label, color }) => (
+          {shotTypes.map((type) => (
             <button
               key={type}
               onClick={() => onShotClick(team, type)}
-              className={`${color} text-white py-4 px-3 rounded-lg text-base font-bold transition-colors active:scale-95`}
+              className={`${primaryBg} text-white py-4 px-3 rounded-lg text-base font-bold transition-colors active:scale-95`}
             >
-              <div>{label}</div>
+              <div>{shotLabels[type]}</div>
               <div className="text-xl">{stats[type]}</div>
             </button>
           ))}
@@ -48,13 +60,13 @@ export const TeamPanel = ({ team, stats, onShotClick, onEventClick }: TeamPanelP
       <div>
         <div className="text-gray-400 text-sm mb-2 font-medium">Other Events</div>
         <div className="grid grid-cols-2 gap-2">
-          {otherEvents.map(({ type, label, color }) => (
+          {otherEventTypes.map((type) => (
             <button
               key={type}
               onClick={() => onEventClick(team, type)}
-              className={`${color} text-white py-4 px-3 rounded-lg text-base font-bold transition-colors active:scale-95`}
+              className={`${secondaryBg} text-white py-4 px-3 rounded-lg text-base font-bold transition-colors active:scale-95`}
             >
-              <div>{label}</div>
+              <div>{otherEventLabels[type]}</div>
               <div className="text-xl">{stats[type]}</div>
             </button>
           ))}
