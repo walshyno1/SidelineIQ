@@ -1,4 +1,5 @@
 import type { Match } from '../types/match';
+import { checkStorageSpace, estimateDataSize } from './storage';
 
 const DB_NAME = 'gaa_stats_db';
 const DB_VERSION = 1;
@@ -69,6 +70,14 @@ export const getMatchById = async (id: string): Promise<Match | undefined> => {
 
 // Add or update a match
 export const saveMatch = async (match: Match): Promise<void> => {
+  // Check storage space before saving
+  const dataSize = estimateDataSize(match);
+  const storageCheck = await checkStorageSpace(dataSize);
+  
+  if (!storageCheck.canStore) {
+    throw new Error(storageCheck.message);
+  }
+
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
@@ -85,6 +94,14 @@ export const saveMatch = async (match: Match): Promise<void> => {
 
 // Add multiple matches (for import)
 export const saveMultipleMatches = async (matches: Match[]): Promise<number> => {
+  // Check storage space before saving
+  const dataSize = estimateDataSize(matches);
+  const storageCheck = await checkStorageSpace(dataSize);
+  
+  if (!storageCheck.canStore) {
+    throw new Error(storageCheck.message);
+  }
+
   const db = await openDB();
   
   return new Promise((resolve, reject) => {

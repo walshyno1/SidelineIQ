@@ -1,4 +1,5 @@
 import type { Squad, AttendanceEvent } from '../types/attendance';
+import { checkStorageSpace, estimateDataSize } from './storage';
 
 const DB_NAME = 'gaa_attendance_db';
 const DB_VERSION = 3; // Increment version to fix events store index
@@ -94,6 +95,14 @@ export const getSquadById = async (squadId: string): Promise<Squad | null> => {
 
 // Save a squad (create or update)
 export const saveSquad = async (squad: Squad): Promise<void> => {
+  // Check storage space before saving
+  const dataSize = estimateDataSize(squad);
+  const storageCheck = await checkStorageSpace(dataSize);
+  
+  if (!storageCheck.canStore) {
+    throw new Error(storageCheck.message);
+  }
+
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
@@ -194,6 +203,14 @@ export const getEventsBySquad = async (squadId: string): Promise<AttendanceEvent
 
 // Save an attendance event
 export const saveEvent = async (event: AttendanceEvent): Promise<void> => {
+  // Check storage space before saving
+  const dataSize = estimateDataSize(event);
+  const storageCheck = await checkStorageSpace(dataSize);
+  
+  if (!storageCheck.canStore) {
+    throw new Error(storageCheck.message);
+  }
+
   const db = await openDB();
   
   return new Promise((resolve, reject) => {
