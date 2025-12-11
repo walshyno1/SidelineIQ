@@ -20,6 +20,7 @@ import { SquadSetup } from './components/SquadSetup';
 import { AttendanceTracker } from './components/AttendanceTracker';
 import { AttendanceEventView } from './components/AttendanceEventView';
 import BackupManager from './components/BackupManager';
+import { BackupReminder } from './components/BackupReminder';
 import type { Team, ShotType, EventType, Match, KickoutType } from './types/match';
 import type { AttendanceEvent } from './types/attendance';
 
@@ -367,18 +368,25 @@ function App() {
 
     // Show home screen
     return (
-      <Home
-        onNewMatch={() => setShowSetup(true)}
-        onViewHistory={handleViewHistory}
-        onViewAnalytics={() => setShowAnalytics(true)}
-        onViewAttendance={() => setShowAttendance(true)}
-        onViewBackup={() => setShowBackup(true)}
-        onContinueMatch={() => setShowHome(false)}
-        historyCount={history.length}
-        hasActiveMatch={!!match && !match.isFinished}
-        isLoadingHistory={isLoading}
-        hasTeamWithMinGames={hasTeamWithMinGames}
-      />
+      <div className="min-h-screen bg-gray-900 flex flex-col">
+        <BackupReminder 
+          matchCount={history.length}
+          squadCount={attendance.squads.length}
+          onBackupClick={() => setShowBackup(true)} 
+        />
+        <Home
+          onNewMatch={() => setShowSetup(true)}
+          onViewHistory={handleViewHistory}
+          onViewAnalytics={() => setShowAnalytics(true)}
+          onViewAttendance={() => setShowAttendance(true)}
+          onViewBackup={() => setShowBackup(true)}
+          onContinueMatch={() => setShowHome(false)}
+          historyCount={history.length}
+          hasActiveMatch={!!match && !match.isFinished}
+          isLoadingHistory={isLoading}
+          hasTeamWithMinGames={hasTeamWithMinGames}
+        />
+      </div>
     );
   }
 
