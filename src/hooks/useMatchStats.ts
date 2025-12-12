@@ -24,6 +24,9 @@ const migrateMatch = (data: Partial<Match>): Match | null => {
     isFinished: data.isFinished ?? false, // Ensure isFinished exists
     trackShots: data.trackShots ?? true, // Default to true for existing matches
     trackKickouts: data.trackKickouts ?? true, // Default to true for existing matches
+    firstHalfStartTime: data.firstHalfStartTime ?? null, // Migration for timing
+    secondHalfStartTime: data.secondHalfStartTime ?? null,
+    matchEndTime: data.matchEndTime ?? null,
   } as Match;
 };
 
@@ -147,6 +150,7 @@ export const useMatchStats = () => {
         home: { ...match.homeStats },
         away: { ...match.awayStats },
       },
+      secondHalfStartTime: Date.now(),
     };
     saveMatch(updatedMatch);
   }, [match, saveMatch]);
@@ -156,6 +160,7 @@ export const useMatchStats = () => {
     const updatedMatch = {
       ...match,
       isFinished: true,
+      matchEndTime: Date.now(),
     };
     saveMatch(updatedMatch);
   }, [match, saveMatch]);

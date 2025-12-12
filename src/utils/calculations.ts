@@ -29,3 +29,38 @@ export const calculateKickoutLossPercentage = (stats: TeamStats): number => {
   if (totalKickouts === 0) return 0;
   return Math.round((stats.kickout_lost / totalKickouts) * 100);
 };
+
+const HALF_DURATION_MINUTES = 30;
+
+/**
+ * Format a timestamp as match time (MM:SS) relative to half start time
+ * Shows overtime as "30:00+1", "30:00+2" etc when elapsed time exceeds half duration
+ * @param timestamp - The event timestamp
+ * @param halfStartTime - The start time of the current half
+ * @param isSecondHalf - Whether this is a second half event (adds 30 min offset)
+ * @returns Formatted time string like "12:34", "30:00+2", or "52:15"
+ */
+export const formatMatchTime = (
+  timestamp: number,
+  halfStartTime: number | null,
+  isSecondHalf: boolean = false
+): string => {
+  if (!halfStartTime) return '--:--';
+  
+  const elapsedMs = timestamp - halfStartTime;
+  const elapsedSeconds = Math.max(0, Math.floor(elapsedMs / 1000));
+  const elapsedMinutes = Math.floor(elapsedSeconds / 60);
+  const seconds = elapsedSeconds % 60;
+  
+  const halfOffset = isSecondHalf ? HALF_DURATION_MINUTES : 0;
+  
+  // Check if we're in overtime (past 30 mins of the half)
+  if (elapsedMinutes >= HALF_DURATION_MINUTES) {
+    const overtimeMinutes = elapsedMinutes - HALF_DURATION_MINUTES + 1;
+    const baseTime = HALF_DURATION_MINUTES + halfOffset;
+    return `${baseTime}:00+${overtimeMinutes}`;
+  }
+  
+  const displayMinutes = elapsedMinutes + halfOffset;
+  return `${displayMinutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+};

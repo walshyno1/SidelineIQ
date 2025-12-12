@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Match, TeamStats } from '../types/match';
 import { calculateScore, calculateShootingAccuracy, calculateKickoutWinPercentage, calculateTotalScore } from '../utils/calculations';
 import { createEmptyStats } from '../types/match';
+import { EventTimeline } from './EventTimeline';
 
 interface MatchSummaryProps {
   match: Match;
@@ -104,6 +105,7 @@ const StatsPanel = ({ homeStats, awayStats }: { homeStats: TeamStats; awayStats:
 
 export const MatchSummary = ({ match, onViewShotMap, onViewKickoutMap, onNewMatch, onHome, isViewingHistory = false }: MatchSummaryProps) => {
   const [statsView, setStatsView] = useState<StatsView>('overall');
+  const [showTimeline, setShowTimeline] = useState(false);
 
   const homeScore = calculateScore(match.homeStats);
   const awayScore = calculateScore(match.awayStats);
@@ -258,6 +260,12 @@ export const MatchSummary = ({ match, onViewShotMap, onViewKickoutMap, onNewMatc
               View Kickout Map
             </button>
           )}
+          <button
+            onClick={() => setShowTimeline(true)}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-medium transition-colors"
+          >
+            📋 View Timeline
+          </button>
           {isViewingHistory && (
             <button
               onClick={onNewMatch}
@@ -276,6 +284,11 @@ export const MatchSummary = ({ match, onViewShotMap, onViewKickoutMap, onNewMatc
           )}
         </div>
       </div>
+
+      {/* Timeline Modal */}
+      {showTimeline && (
+        <EventTimeline match={match} onClose={() => setShowTimeline(false)} />
+      )}
     </div>
   );
 };

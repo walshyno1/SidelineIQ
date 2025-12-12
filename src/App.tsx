@@ -174,7 +174,7 @@ function App() {
     // The match will be saved to history when user starts new match
     // We need to save immediately since the match state will update
     if (match) {
-      addToHistory({ ...match, isFinished: true });
+      addToHistory({ ...match, isFinished: true, matchEndTime: Date.now() });
     }
   };
 

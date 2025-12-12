@@ -63,6 +63,9 @@ export interface Match {
   isFinished: boolean;
   trackShots: boolean;
   trackKickouts: boolean;
+  firstHalfStartTime: number | null;
+  secondHalfStartTime: number | null;
+  matchEndTime: number | null;
 }
 
 export const createEmptyStats = (): TeamStats => ({
@@ -93,4 +96,7 @@ export const createNewMatch = (homeTeam: string, awayTeam: string, date: string,
   isFinished: false,
   trackShots,
   trackKickouts,
+  firstHalfStartTime: Date.now(),
+  secondHalfStartTime: null,
+  matchEndTime: null,
 });
