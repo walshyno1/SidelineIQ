@@ -45,6 +45,14 @@ Real-time display of:
 - **Export/Import** - backup and restore match data as JSON files
 - **Individual match export** - export single matches
 
+### Match Timeline
+- **Chronological event view** - see all match events in order with match timestamps
+- **Match time display** - shows time as MM:SS with 30-minute halves
+- **Overtime notation** - times beyond 30 minutes shown as "30:00+X" format
+- **Milestone markers** - kick-off, half time, and full time clearly marked
+- **Event filters** - filter by All, Shots, Kickouts, or Turnovers
+- **Team color coding** - home events in green, away events in blue
+
 ### Team Analytics
 - **Requires 3+ games** for a team to access analytics
 - **Win/Draw/Loss record** with percentages
@@ -109,7 +117,9 @@ SidelineIQ/
 │   │   ├── AttendanceEventView.tsx  # Individual event attendance marking
 │   │   ├── AttendanceTracker.tsx    # Event list and creation
 │   │   ├── BackupManager.tsx        # Export/import match data
+│   │   ├── BackupReminder.tsx       # Periodic backup reminder notification
 │   │   ├── ConfirmModal.tsx         # Reusable confirmation dialog
+│   │   ├── EventTimeline.tsx        # Match event timeline with filters
 │   │   ├── HalfTimeSummary.tsx      # Half-time statistics summary
 │   │   ├── Home.tsx                 # Landing page with navigation
 │   │   ├── KickoutHeatmap.tsx       # Kickout heatmap visualization
@@ -139,8 +149,10 @@ SidelineIQ/
 │   ├── utils/
 │   │   ├── attendanceDB.ts          # IndexedDB for attendance data
 │   │   ├── backup.ts                # Backup/restore utilities
-│   │   ├── calculations.ts          # Score and stat calculation functions
-│   │   └── indexedDB.ts             # IndexedDB for match history
+│   │   ├── calculations.ts          # Score, stat, and match time functions
+│   │   ├── indexedDB.ts             # IndexedDB for match history
+│   │   ├── logger.ts                # Debug logging with IndexedDB persistence
+│   │   └── storage.ts               # Storage availability checks
 │   ├── App.tsx               # Main application component
 │   ├── App.css               # App-specific styles
 │   ├── index.css             # Global styles with Tailwind
